@@ -48,5 +48,21 @@ namespace :foreman do
   end
 end
 
+
+desc "Stop web_log"
+task :stop do
+  sh %{sudo stop web_log}
+end
+
+desc "Start web_log"
+task :start do
+  sh %{sudo start web_log}
+end
+
+desc "Restart web_log"
+task :restart do
+  sh %{sudo start web_log || sudo restart web_log}
+end
+
 desc "rake install log_dir=/var/log Install all on your server rake"
-task :install => ["download:clj-stream-sh", "nginx:conf:create", "nginx:conf:update", "foreman:export", "nginx:reload"]
+task :install => ["download:clj-stream-sh", "nginx:conf:create", "nginx:conf:update", "foreman:export", "start", "nginx:reload"]
