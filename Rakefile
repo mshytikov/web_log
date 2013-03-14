@@ -10,7 +10,7 @@ end
 
 namespace :nginx do
   namespace :conf do
-    desc "reake nginx:create:conf log_dir=/you_app/log  .Create config for your  log dir"
+    desc "rake nginx:create:conf log_dir=/you_app/log  .Create config for your  log dir"
     task :create do
       log_dir =  ENV['log_dir']
       conf_file = "config/web_log.conf"
@@ -47,3 +47,6 @@ namespace :foreman do
     sh %{rvmsudo bundle exec foreman export upstart /etc/init -a web_log -c app=1 -u $(whoami)}
   end
 end
+
+desc "rake install log_dir=/var/log Install all on your server rake"
+task :install => ["nginx:conf:create", "nginx:conf:update", "foreman:export", "nginx reload"]
