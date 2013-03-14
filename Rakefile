@@ -49,4 +49,4 @@ namespace :foreman do
 end
 
 desc "rake install log_dir=/var/log Install all on your server rake"
-task :install => ["nginx:conf:create", "nginx:conf:update", "foreman:export", "nginx reload"]
+task :install => ["download:clj-stream-sh", "nginx:conf:create", "nginx:conf:update", "foreman:export", "nginx reload"]
