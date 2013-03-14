@@ -3,7 +3,7 @@
 namespace :download do
   desc "Download clj-stream-sh"
   task "clj-stream-sh" do
-    sh %{wget -N -P ./app -O clj-stream-sh.jar http://dl.dropbox.com/u/27498455/clj-stream-sh-0.0.1-SNAPSHOT-standalone.jar} 
+    sh %{wget -N  -O ./app/clj-stream-sh.jar http://dl.dropbox.com/u/27498455/clj-stream-sh-0.0.1-SNAPSHOT-standalone.jar} 
   end
 end
 
