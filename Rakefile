@@ -10,13 +10,13 @@ end
 
 namespace :nginx do
   namespace :conf do
-    desc "Create config for your  log dir"
+    desc "reake nginx:create:conf log_dir=/you_app/log  .Create config for your  log dir"
     task :create do
-     log_dir =  ARGV[1]
-     conf_file = "config/web_log.conf"
-     conf = File.read(conf_file)
-     conf.sub(/(set \$log_dir).*$/, "\1 #{log_dir}")
-     File.open(conf_file, "w"){ |f| f.write(conf) }
+      log_dir =  ENV['log_dir']
+      conf_file = "config/web_log.conf"
+      conf = File.read(conf_file)
+      conf.sub!(/(set\s+\$log_dir).*$/, "set $log_dir #{log_dir}")
+      File.open(conf_file, "w"){ |f| f.write(conf) }
     end
 
     desc "Add link to nginx conf  web_log.conf"
@@ -38,5 +38,12 @@ namespace :nginx do
   task :reload do
     sh %{ sudo nginx -s reload }
   end
- 
+
+end
+
+namespace :foreman do
+  desc "Export the Procfile to Ubuntu's upstart scripts"
+  task :export do
+    sh %{bundle exec foreman export upstart /etc/init -a web_log -c app=1}
+  end
 end
