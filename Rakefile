@@ -12,8 +12,11 @@ namespace :nginx do
   namespace :conf do
     desc "Create config for your  log dir"
     task :create do
-
-
+     log_dir =  ARGV[1]
+     conf_file = "config/web_log.conf"
+     conf = File.read(conf_file)
+     conf.sub(/(set \$log_dir).*$/, "\1 #{log_dir}")
+     File.open(conf_file, "w"){ |f| f.write(conf) }
     end
 
     desc "Add link to nginx conf  web_log.conf"
