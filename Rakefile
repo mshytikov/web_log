@@ -44,6 +44,6 @@ end
 namespace :foreman do
   desc "Export the Procfile to Ubuntu's upstart scripts"
   task :export do
-    sh %{bundle exec foreman export upstart /etc/init -a web_log -c app=1}
+    sh %{rvmsudo bundle exec foreman export upstart /etc/init -a web_log -c app=1 -u $(whoami)}
   end
 end
