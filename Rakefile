@@ -21,11 +21,17 @@ namespace :nginx do
       sh %{ sudo cp ./config/web_log.conf /etc/nginx/conf.d/ }
     end
 
+    desc "Remove config from nginx"
     task :rm do
-      sh %{ sudo rm /etc/nginx/conf.d/web_log.conf }
+      sh %{ sudo rm -f /etc/nginx/conf.d/web_log.conf }
     end
+
+    desc "Update conf in nginx" 
+    task :update => [:rm, :cp]
+
   end
 
+  desc "Reloca nginx"
   task :reload do
     sh %{ sudo nginx -s reload }
   end
