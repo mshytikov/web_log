@@ -3,7 +3,7 @@
 namespace :download do
   desc "Download clj-stream-sh"
   task "clj-stream-sh" do
-    sh %{wget -N  -O ./app/clj-stream-sh.jar http://dl.dropbox.com/u/27498455/clj-stream-sh-0.0.1-SNAPSHOT-standalone.jar} 
+    sh %{wget -O ./app/clj-stream-sh.jar http://dl.dropbox.com/u/27498455/clj-stream-sh-0.0.1-SNAPSHOT-standalone.jar} 
   end
 end
 
@@ -15,7 +15,7 @@ namespace :nginx do
       log_dir =  ENV['log_dir']
       conf_file = "config/web_log.conf"
       conf = File.read(conf_file)
-      conf.sub!(/(set\s+\$log_dir).*$/, "set $log_dir #{log_dir}")
+      conf.sub!(/(set\s+\$log_dir).*$/, "set $log_dir #{log_dir};")
       File.open(conf_file, "w"){ |f| f.write(conf) }
     end
 
