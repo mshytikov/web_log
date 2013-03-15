@@ -26,22 +26,23 @@ $ rake install log_dir=/var/log/nginx
 
 ```
 
-Note: your user should have read permission in pecified log dir (/var/logs/nginx in example)
+Note: your user should have read permission in specified log dir
+(/var/logs/nginx in example).
 And you need to wait few seconds(= jvm startup time),  after installation
 
 ### Usage ###
 
-If everything configured properly. yuo should be able to see los files
+If everything configured properly you should be able to see list of your log files
 
 in console ``` $ curl http://127.0.0.1:8135/logs ```
 
-or in browser http://<host_name>:8135/logs
+or in browser http://host_name:8135/logs
 
 
 And stream any of listed files
 in console ``` $ curl http://127.0.0.1:8135/logs/access.log ```
 
-or in browser http://<host_name>:8135/logs/access.log
+or in browser http://host_name:8135/logs/access.log
 
 ### Start/Stop ###
 
